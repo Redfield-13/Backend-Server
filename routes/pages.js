@@ -41,17 +41,6 @@ router.post('/likes', async (req, res) => {
         let liker = req.query.liker
         let get_sql = 'SELECT liked from UploadedMedia WHERE id = ?'
         let likedBy = ''
-        // data_base.query(get_sql,mediaid,(err,results) =>{
-        //     if (err) {
-        //         console.log(err + 'hska');
-        //     }else{
-        //         console.log('Datasssssssss : ' + results[0]);
-        //         likedBy = results
-        //         return results
-        //     }
-            
-        // })
-
         console.log('likedBY: '+ likedBy);
         if (req.query.operation == 'unlike') {
             likes = likes - 1
@@ -71,6 +60,26 @@ router.post('/likes', async (req, res) => {
         return res.status(400).send(error.message)
     }
   });
+
+router.post('/delete', async(req,res) =>{
+    try{
+        let sql_q = ' DELETE FROM UploadedMedia WHERE id = ?'
+        let imgID = parseInt(req.query.imgID)
+        console.log(imgID);
+        data_base.query(sql_q,[imgID], (error,results) => {
+            if (error) {
+                console.log('Delete Error : ' + error);
+                return error
+            }
+            else{
+                return res.status(200).send({code : 200, message:'Media Deleted'})
+            }
+        })
+    }catch(error){
+        console.log(error);
+        return res.status(400).send(error)
+    }
+})
 
 
 

@@ -80,9 +80,5 @@ router.post('/upload', uploadMedia.single("image"), async (req,res)=>{
     }
 })
 
-// const giveCurrentDateTime = () =>{
-//     const today = new Date();
-//     const Date = today.getFullYear() + '-' + (today.getMonth() + 1) 
-// }
 
 module.exports = router
