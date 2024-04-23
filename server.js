@@ -40,3 +40,5 @@ app.use('/upload', uploadImage)
 app.listen(3456, ()=>{
     console.log("Server Started On Port : 3456");
 })
+
+module.exports = app;
